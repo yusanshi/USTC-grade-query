@@ -28,7 +28,7 @@ function fill_form(data) {
     document.getElementById("latest_gpa").innerHTML = data['overview']['latest_gpa'];
     document.getElementById("latest_credits").innerHTML = data['overview']['latest_credits'];
 
-    table_data = [];
+    var table_data = [];
 
     for (var key in data['record']) {
         table_data.push({
