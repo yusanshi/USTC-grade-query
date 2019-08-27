@@ -1,5 +1,5 @@
 $(function () {
-    $('#loginForm').on('submit', function(e) {
+    $('#loginForm').on('submit', function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -28,30 +28,17 @@ function fill_form(data) {
     document.getElementById("latest_gpa").innerHTML = data['overview']['latest_gpa'];
     document.getElementById("latest_credits").innerHTML = data['overview']['latest_credits'];
 
-    var table = document.getElementById("table");
-    var tbody = document.getElementById("tbody");
-    table.removeChild(tbody);
-    tbody = document.createElement("tbody");
-    tbody.id = "tbody";
-
+    table_data = [];
 
     for (var key in data['record']) {
-        var tr = document.createElement("tr");
-        var td1 = document.createElement("td");
-        var td2 = document.createElement("td");
-        var td3 = document.createElement("td");
-        var td4 = document.createElement("td");
-
-        td1.innerHTML = key;
-        td2.innerHTML = data['record'][key]['credits'];
-        td3.innerHTML = data['record'][key]['gp'];
-        td4.innerHTML = data['record'][key]['score'];
-
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
-        tbody.appendChild(tr);
+        table_data.push({
+            name: key,
+            credits: data['record'][key]['credits'],
+            gp: data['record'][key]['gp'],
+            score: data['record'][key]['score']
+        })
     }
-    table.appendChild(tbody);
+
+    $('#table').bootstrapTable('load', table_data);
+
 }
