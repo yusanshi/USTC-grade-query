@@ -3,7 +3,7 @@ $(function () {
         e.preventDefault();
 
         $.ajax({
-            url: "get_grade.php",
+            url: "https://yusanshi.com/api/get_grade",
             type: "POST",
             data: $('#loginForm').serialize(),
             dataType: "json",
@@ -16,7 +16,7 @@ $(function () {
                 }
             },
             error: function () {
-                alert('Failed. "get_grade.php" has no response!');
+                alert('Unknown error!');
             }
         });
     });
