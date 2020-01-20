@@ -1,4 +1,3 @@
-import requests
 import json
 import sys
 from bs4 import BeautifulSoup
@@ -25,15 +24,15 @@ def get_grade(username, password):
     }
 
     try:
-        brow = login(url, headers, data)
-        semester_ID = brow.get(semester_ID_url, headers=headers)
+        session = login(url, headers, data)
+        semester_ID = session.get(semester_ID_url, headers=headers)
         semester_ID = BeautifulSoup(semester_ID.text, 'lxml')
         semester_ID = json.loads(semester_ID.p.string)
         semester_ID = sorted([unit['id'] for unit in semester_ID])
         assert len(semester_ID) > 0
 
-        all_grade = process(brow, semester_ID, headers, grade_url_base)
-        latest_grade = process(brow, semester_ID[-1:], headers, grade_url_base)
+        all_grade = process(session, semester_ID, headers, grade_url_base)
+        latest_grade = process(session, semester_ID[-1:], headers, grade_url_base)
         integrate_grade = {}
         integrate_grade['record'] = latest_grade['record']
         integrate_grade['overview'] = {'all_gpa': all_grade['overview']['gpa'],
@@ -47,12 +46,12 @@ def get_grade(username, password):
         return json.dumps({})
 
 
-def process(brow, semester_ID, headers, grade_url_base):
+def process(session, semester_ID, headers, grade_url_base):
     semester_ID = [str(unit) for unit in semester_ID]
     semester_ID = ','.join(semester_ID)
 
     grade_url = grade_url_base + semester_ID
-    grade_info = brow.get(grade_url, headers=headers)
+    grade_info = session.get(grade_url, headers=headers)
     grade_info = BeautifulSoup(grade_info.text, 'lxml')
     grade_info = json.loads(grade_info.p.string)
 
