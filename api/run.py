@@ -5,7 +5,7 @@ import waitress
 app = Flask(__name__)
 
 
-@app.route('/api/get_grade', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def return_grade():
     if request.method == 'GET':
         return "Use POST method please."

@@ -3,7 +3,7 @@ $(function () {
         e.preventDefault();
 
         $.ajax({
-            url: "https://yusanshi.com/api/get_grade",
+            url: "https://yusanshi.com/api/get_grade/",
             type: "POST",
             data: $('#loginForm').serialize(),
             dataType: "json",

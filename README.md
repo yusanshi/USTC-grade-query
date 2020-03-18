@@ -6,7 +6,7 @@
 
 用于快速查询中科大学生成绩，输入学号、密码后，能显示总体学分、总体 GPA 、本期学分、本期 GPA 以及本期的已出成绩。
 
-分为前端和后端。前端使用 Bootstrap 框架，利用 Ajax 实现免刷新更新信息，前端接受用户输入的学号、密码，并负责显示成绩。后端使用 Python 脚本利用爬虫原理获取成绩，使用 Flask 搭建 API 并用 Nginx 将其转发到 80/443 端口，API 地址：https://yusanshi.com/api/get_grade 。
+分为前端和后端。前端使用 Bootstrap 框架，利用 Ajax 实现免刷新更新信息，前端接受用户输入的学号、密码，并负责显示成绩。后端使用 Python 脚本利用爬虫原理获取成绩，使用 Flask 搭建 API 并用 Nginx 将其转发到 80/443 端口，API 地址：https://yusanshi.com/api/get_grade/ 。
 
 演示站：https://yusanshi.com/GPA
 
